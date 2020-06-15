@@ -1,0 +1,15 @@
+{
+  "name": "object-entanglement",
+  "version": "1.0.0",
+  "description": "Entangle your objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "es6",
+    "function"
+  ],
+  "author": "lu.karczewski@gmail.com",
+  "license": "MIT"
+}
