@@ -1,3 +1,5 @@
+![coverage lines](coverage/badge-lines.svg "Coverage lines") ![coverage functions](coverage/badge-functions.svg "Coverage functions") ![coverage branches](coverage/badge-branches.svg "Coverage branches") ![coverage statements](coverage/badge-statements.svg "Coverage statements")
+
 # Object entanglement
 
 This is a simple package enabling you "object entanglement". What is it? Well...
@@ -87,9 +89,45 @@ However, due to the way Javascript works adding new keys won't be registered, bu
 
 ## Twin entanglement
 
-This feature will enable you to register new keys in entangled objects.
+Here we need to create **twins** of the original objects we want to entangle in order to enable them to keep track of added and deleted keys. Here's how it works:
 
-Coming soon...
+```javascript
+import { twinEntangle, DISENTANGLE } from "object-entanglement";
+
+let obj1 = { a: 1 };
+let obj2 = { a: 5 };
+
+let [twin1, twin2] = twinEntangle(obj1, obj2);
+
+console.log(twin1.a); // 1
+console.log(twin2.a); // 5
+
+console.log(twin1 === obj1); // false
+console.log(twin2 === obj2); // false
+
+twin1.a++;
+console.log(twin1.a); // 2
+console.log(twin2.a); // 6
+console.log(obj1.a); // 1
+console.log(obj2.a); // 5
+
+obj1.a++;
+console.log(twin1.a); // 2
+console.log(twin2.a); // 6
+console.log(obj1.a); // 2
+console.log(obj2.a); // 6
+
+twin1.b = 5;
+console.log(twin1.b); // 5
+console.log(twin2.b); // 5
+console.log(obj1.b); // undefined
+console.log(obj2.b); // undefined
+```
+
+Notice two things:
+
+1. This is only useful is a situation with complete control of reference distribution in your application. If objects are already distributed in your app and you want to affect them directly, use regular entanglement. This feature is actually the reason I created this library.
+1. This will affect your original object on disentanglement. This was done to be reflect regular entanglement's behavior.
 
 These two features preserve original structures of entangled objects. However, if you'd like to create an "absolute entanglement", use...
 
