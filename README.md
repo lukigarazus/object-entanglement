@@ -198,7 +198,7 @@ However, just like in case of entanglement this won't register new keys. And tha
 
 Coming soon!
 
-## API
+<!-- ## API
 
 | name         | type     |
 | ------------ | -------- |
@@ -209,4 +209,4 @@ Coming soon!
 | tEntangle    | function |
 | DISTENTANGLE | symbol   |
 | tMirror      | function |
-| DETMIRROR    | symbol   |
+| DETMIRROR    | symbol   | -->
